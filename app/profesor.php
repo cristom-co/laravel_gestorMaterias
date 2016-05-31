@@ -10,6 +10,6 @@ class profesor extends Model
     protected $fillable = ['nombres','apellidos','identificacion','direccion','telefono','correo','profesion'];
     
     public function materias() {
-        return $this-hasMany('App\materia','profesor_id','id');
+        return $this->hasMany('App\materia','profesor_id','id');
     }
 }

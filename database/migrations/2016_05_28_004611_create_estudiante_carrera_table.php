@@ -29,6 +29,6 @@ class CreateEstudianteCarreraTable extends Migration
      */
     public function down()
     {
-        Schema::drop('estudiante_carrera');
+        Schema::drop('estudiante_materia');
     }
 }
