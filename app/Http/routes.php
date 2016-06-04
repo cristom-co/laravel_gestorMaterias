@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'],function () {
     
     Route::get('/',function () {
-        echo 'Panel del administrador';
+        return view('admin/panel-admin');
     });
     
     Route::resource('users','UsersController');
