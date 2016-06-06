@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\User;
+use Laracasts\Flash\Flash;
 
 class UsersController extends Controller
 {
@@ -16,8 +17,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id','ASC')->paginate(5);
-        
+        $users = User::orderBy('id','ASC')->paginate(10);
         return view('admin.users.index')->with('users',$users);
         
     }
@@ -40,11 +40,11 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $user = new User($request->all());
         $user->password = bcrypt($request->password);
         $user->save();
-        dd('usuario creado');
+        Flash::info("Se ha registrado a '". $user->name . "' correctamente!");
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -66,7 +66,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.users.edit')->with('user', $user);
+
     }
 
     /**
@@ -78,7 +80,14 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user =  User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->type = $request->type;
+        $user->save();
+        
+        Flash::warning("El usuario '".$user->name ."' se edito correctamente!");
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -89,6 +98,10 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        
+        Flash::danger("Se ha eliminado a '". $user->name ."' correctamente!");
+        return redirect()->route('admin.users.index');
     }
 }

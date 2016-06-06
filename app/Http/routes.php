@@ -22,10 +22,27 @@ Route::group(['prefix' => 'admin'],function () {
     });
     
     Route::resource('users','UsersController');
+    Route::get('users/{id}/destroy',[
+        'uses'  =>  'UsersController@destroy',
+        'as'    =>  'admin.users.destroy']
+    );
+    
     Route::resource('estudiantes','EstudiantesController');
+
     Route::resource('profesores','ProfesoresController');
+    Route::get('profesores/{id}/destroy',[
+        'uses'  =>  'ProfesoresController@destroy',
+        'as'    =>  'admin.profesores.destroy']
+    );
+
     Route::resource('carreras','CarrerasController');
+    Route::get('carreras/{id}/destroy',[
+        'uses'  =>  'CarrerasController@destroy',
+        'as'    =>  'admin.carreras.destroy']
+    );
+
     Route::resource('materias','MateriasController');
+    
 });
 
 Route::group(['prefix' => 'estudiante'], function () {

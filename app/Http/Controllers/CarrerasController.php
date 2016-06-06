@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\carrera;
+use Laracasts\Flash\Flash;
 
 class CarrerasController extends Controller
 {
@@ -15,7 +17,8 @@ class CarrerasController extends Controller
      */
     public function index()
     {
-        //
+        $carreras =  carrera::orderBy('id','ASC')->paginate(5);
+        return view('admin.carreras.index')->with('carreras', $carreras);
     }
 
     /**
@@ -25,7 +28,7 @@ class CarrerasController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.carreras.create');
     }
 
     /**
@@ -36,7 +39,10 @@ class CarrerasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $carrera =  new Carrera($request->all());
+        $carrera->save();
+        Flash::info("Se ha registrado la carrera '". $carrera->nombre . "' correctamente!");
+        return redirect()->route('admin.carreras.index');
     }
 
     /**
@@ -58,7 +64,8 @@ class CarrerasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $carrera = carrera::find($id);
+        return view('admin.carreras.edit')->with('carrera',$carrera);
     }
 
     /**
@@ -70,7 +77,10 @@ class CarrerasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $carrera = carrera::find($id);
+        $carrera->fill($request->all())->save();
+        Flash::warning("Se ha editado la carrera '". $carrera->nombre . "' correctamente!");
+        return redirect()->route('admin.carreras.index');
     }
 
     /**
@@ -81,6 +91,9 @@ class CarrerasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $carrera = carrera::find($id);
+        $carrera->delete();
+        Flash::warning("Se ha eliminado la carrera '". $carrera->nombre ."' correctamente!");
+        return redirect()->route('admin.carreras.index');   
     }
 }

@@ -25,7 +25,7 @@ class MateriasController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.materias.create');
     }
 
     /**
