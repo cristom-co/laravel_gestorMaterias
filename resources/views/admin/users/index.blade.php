@@ -1,4 +1,4 @@
-@extends('admin.panel-admin')
+@extends('home')
 @section('contentheader_title', 'Usuarios del sistema')
 @section('forms')
     

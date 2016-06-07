@@ -31,7 +31,7 @@
                         <td>{{ $profesor->profesion }}</td>
                         <td>
                             <a href="{{ route('admin.profesores.edit',$profesor->id) }}" class="btn btn-info"><span class='glyphicon glyphicon-wrench' aria-hidden='true'></span></a>
-                            <a href="{{ route('admin.profesores.destroy', $profesor->id)}}" class="btn btn-danger"><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></a>
+                            <a href="{{ route('admin.profesores.destroy', $profesor->id)}}" onclick="return confirm('Por favor confirma la accion de eliminar')" class="btn btn-danger"><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></a>
                         </td>
                     </tr>
                 @endforeach

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\materia;
 
 class MateriasController extends Controller
 {
@@ -15,7 +16,8 @@ class MateriasController extends Controller
      */
     public function index()
     {
-        //
+        $materias = materia::orderBy('id','ASC')->paginate(10);
+        return view('admin.materias.index')->with('materias',$materias);
     }
 
     /**

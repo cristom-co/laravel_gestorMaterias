@@ -32,13 +32,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><b>GM</b></a>
+            <a class="navbar-brand" href="#"><b>GM</b> - laravel</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Ingresar</a></li>
-                    <li><a href="{{ url('/register') }}">Registrarse</a></li>
                 @else
                     <li><a href="home">{{ Auth::user()->name }}</a></li>
                 @endif

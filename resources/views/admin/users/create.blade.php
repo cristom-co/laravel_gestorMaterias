@@ -1,4 +1,4 @@
-@extends('admin.panel-admin')
+@extends('home')
 @section('contentheader_title', 'Crear usuarios')
 @section('forms')
     <div class="col-lg-8 col-lg-offset-2">

@@ -1,39 +1,40 @@
-@extends('admin.panel-admin')
-
+@extends('home')
+@section('contentheader_title','Materias del sistema')
 @section('forms')
     
-    <a href="{{route('admin.profesores.create')}}" class="btn btn-success" style='margin:10px;'>Registrar un nuevo profesor</a>
+    <a href="{{route('admin.materias.create')}}" class="btn btn-success" style='margin:10px;'>Registrar una nueva materia</a>
     
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
                 <th>ID</th>
-                <th>Nombres</th>
-                <th>Apellidos</th>
-                <th>Identificacion</th>
-                <th>Direccion</th>
-                <th>Telefono</th>
-                <th>Correo</th>
-                <th>Profesion</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Cupos</th>
+                <th>Jornada</th>
+                <th>Profesor</th>
+                <th>Carrera</th>
                 <th>Acciones</th>
             </thead>
             <tbody>
-                @foreach($profesores as $profesor)
+                @foreach($materias as $materia)
                     <tr>
-                        <td>{{ $profesor->id }}</td>
-                        <td>{{ $profesor->nombres }}</td>
-                        <td>{{ $profesor->apellidos }}</td>
-                        <td>{{ $profesor->identificacion }}</td>
-                        <td>{{ $profesor->direccion }}</td>
-                        <td>{{ $profesor->telefono }}</td>
-                        <td>{{ $profesor->correo }}</td>
-                        <td>{{ $profesor->profesion }}</td>
-                        <td><a href="" class="btn btn-success"></a><a href="" class="btn btn-warning"></a></td>
+                        <td>{{ $materia->id }}</td>
+                        <td>{{ $materia->nombre }}</td>
+                        <td>{{ $materia->descripcion }}</td>
+                        <td>{{ $materia->cupos }}</td>
+                        <td>{{ $materia->jornada }}</td>
+                        <td>{{ $materia->profesor_id }}</td>
+                        <td>{{ $materia->carrera_id }}</td>
+                        <td class='text-right'>
+                            <a href="{{ route('admin.materias.edit',$materia->id) }}" class="btn btn-info"><span class='glyphicon glyphicon-wrench' aria-hidden='true'></span></a>
+                            <a href="{{ route('admin.materias.destroy', $materia->id)}}" onclick="return confirm('Por favor confirma la accion de eliminar')" class="btn btn-danger"><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        {!! $profesores->render() !!}
+        {!! $materias->render() !!}
     </div>
 
 

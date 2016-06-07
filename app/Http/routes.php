@@ -28,6 +28,11 @@ Route::group(['prefix' => 'admin'],function () {
     );
     
     Route::resource('estudiantes','EstudiantesController');
+    Route::get('estudiantes/{id}/destroy',[
+        'uses'  =>  'EstudiantesController@destroy',
+        'as'    =>  'admin.estudiantes.destroy']
+    );
+    
 
     Route::resource('profesores','ProfesoresController');
     Route::get('profesores/{id}/destroy',[
@@ -42,6 +47,11 @@ Route::group(['prefix' => 'admin'],function () {
     );
 
     Route::resource('materias','MateriasController');
+    Route::get('materias/{id}/destroy',[
+        'uses'  =>  'MateriasController@destroy',
+        'as'    =>  'admin.materias.destroy']
+    );
+    
     
 });
 

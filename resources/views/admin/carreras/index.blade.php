@@ -1,4 +1,4 @@
-@extends('admin.panel-admin')
+@extends('home')
 @section('contentheader_title', 'Carreras del sistema')
 @section('forms')
     
@@ -22,7 +22,7 @@
                         <td>{{ $carrera->numero_creditos }}</td>
                         <td class='text-right'>
                             <a href="{{ route('admin.carreras.edit', $carrera->id)}}" class="btn btn-info"><span class='glyphicon glyphicon-wrench' aria-hidden='true'></span></a>
-                            <a href="{{ route('admin.carreras.destroy', $carrera->id)}}" class="btn btn-danger"><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></a>
+                            <a href="{{ route('admin.carreras.destroy', $carrera->id)}}" onclick="return confirm('Por favor confirma la accion de eliminar')" class="btn btn-danger"><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></a>
                         </td>
                     </tr>
                 @endforeach

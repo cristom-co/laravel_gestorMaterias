@@ -1,5 +1,5 @@
-@extends('admin.panel-admin')
-
+@extends('home')
+@section('contentheader_title','Registrar Materia')
 @section('forms')
     <div class="col-lg-8 col-lg-offset-2">
         {!! Form::open(array('route' => 'admin.materias.store', 'method' => 'POST')); !!}
