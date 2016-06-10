@@ -20,6 +20,17 @@
             {!! Form::text('jornada',NULL,['class' => 'form-control', 'placeholder' => 'escriba la jornada de la materia']); !!}
         </div>
         <!-- 2 SELECT PARA PROFESOR Y CARRERA -->
+        <div class="form-group">
+            {!! Form::label('carrera_id','Carreras') !!}
+            {!! Form::select('carrera_id',$carreras,null,['class'=>'form-control', 'placeholder' => 'Seleccione una carrera']); !!}
+        </div>
+        
+        <div class="form-group">
+            {!! Form::label('profesor_id','Profesores') !!}
+            {!! Form::select('profesor_id',$profesores,null,['class'=>'form-control', 'placeholder' => 'Seleccione un profesor']); !!}
+        </div>
+        
+        
         <div>
             {!! Form::submit('Registrar Materia',['class' => 'btn btn-primary']); !!}
         </div>    

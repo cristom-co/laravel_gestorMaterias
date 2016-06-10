@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\materia;
+use App\carrera;
+use App\profesor;
 
 class MateriasController extends Controller
 {
@@ -27,7 +29,11 @@ class MateriasController extends Controller
      */
     public function create()
     {
-        return view('admin.materias.create');
+        $carreras = carrera::orderBy('nombre','ASC')->lists('nombre','id');
+        $profesores = profesor::orderBy('nombres', 'ASC')->lists('nombres','id');
+        return view('admin.materias.create')
+            ->with('carreras',$carreras)
+            ->with('profesores',$profesores);
     }
 
     /**

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\estudiante;
+use App\User;
+use App\carrera;
 use Laracasts\Flash\Flash;
 
 class EstudiantesController extends Controller
@@ -28,7 +30,11 @@ class EstudiantesController extends Controller
      */
     public function create()
     {
-        return view('admin.estudiantes.create');
+        $users = User::orderBy('name','ASC')->lists('name','id');
+        $carreras = carrera::orderBy('nombre','ASC')->lists('nombre','id');
+        return view('admin.estudiantes.create')
+        ->with('users',$users)
+        ->with('carreras',$carreras);
     }
 
     /**

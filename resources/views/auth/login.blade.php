@@ -47,9 +47,6 @@
             </div><!-- /.col -->
         </div>
     </form>
-
-
-    <a href="{{ url('/password/reset') }}">He olvidado mis credenciales</a><br>
 </div><!-- /.login-box-body -->
 
 </div><!-- /.login-box -->
