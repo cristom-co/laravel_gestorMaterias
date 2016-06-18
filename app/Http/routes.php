@@ -33,7 +33,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function () {
         'as'    =>  'admin.estudiantes.destroy']
     );
     
-
     Route::resource('profesores','ProfesoresController');
     Route::get('profesores/{id}/destroy',[
         'uses'  =>  'ProfesoresController@destroy',
@@ -51,8 +50,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function () {
         'uses'  =>  'MateriasController@destroy',
         'as'    =>  'admin.materias.destroy']
     );
-    
-    
 });
 
 Route::group(['prefix' => 'estudiante', 'middleware' => 'auth'], function () {
@@ -61,5 +58,5 @@ Route::group(['prefix' => 'estudiante', 'middleware' => 'auth'], function () {
         echo 'Panel del estudiante';
     });
     
-    // Reoute::resource('materias_estudiante','materias_estudianteController');
+    Route::resource('materias_estudiante','materias_estudianteController');
 });

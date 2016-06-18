@@ -45,9 +45,13 @@ class EstudiantesController extends Controller
      */
     public function store(Request $request)
     {
-        $estudiante = new Estudiante($request->all());
+        // dd($request->all());
+        $estudiante = new estudiante($request->all());
+        $estudiante->user()->associate($request->user_id);
+        $estudiante->carrera()->associate($request->carrera_id);
+        // dd($estudiante);
         $estudiante->save();
-        Flash::info("Se ha registrado a '". $estudiante->nombres . "' correctamente!");
+        Flash::info("Se ha registrado al estudiante '". $estudiante->nombres . "' correctamente!");
         return redirect()->route('admin.estudiantes.index');
     }
 
@@ -71,7 +75,11 @@ class EstudiantesController extends Controller
     public function edit($id)
     {
         $estudiante = estudiante::find($id);
-        return view('admin.estudiantes.edit')->with('estudiante',$estudiante);
+        $carreras = carrera::orderBy('nombre','ASC')->lists('nombre','id');
+        // dd($estudiante);
+        return view('admin.estudiantes.edit')
+        ->with('estudiante',$estudiante)
+        ->with('carreras', $carreras);
     }
 
     /**
@@ -84,6 +92,7 @@ class EstudiantesController extends Controller
     public function update(Request $request, $id)
     {
         $estudiante = estudiante::find($id);
+        $estudiante->carrera()->associate($request->carrera_id);
         $estudiante->fill($request->all())->save();
         Flash::warning("El estudiante se edito correctamente!");
         return redirect()->route('admin.estudiantes.index');

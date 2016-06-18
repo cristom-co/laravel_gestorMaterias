@@ -23,8 +23,6 @@
             {!! Form::label('telefono', 'Telefono'); !!}
             {!! Form::text('telefono',NULL,['class' => 'form-control', 'placeholder' => 'escriba el telefono del estudiante']); !!}
         </div>
-        
-        <!-- SELECT USER Y CARRERA -->
         <div class="form-group">
             {!! Form::label('user_id','Usuarios') !!}
             {!! Form::select('user_id',$users,null,['class' => 'form-control', 'placeholder' => 'Seleccione un usuario']) !!}
@@ -33,7 +31,6 @@
             {!! Form::label('carrera_id','Carreras') !!}
             {!! Form::select('carrera_id',$carreras,null,['class'=>'form-control', 'placeholder' => 'Seleccione una carrera']); !!}
         </div>
-        
         <div>
             {!! Form::submit('Registrar estudiante',['class' => 'btn btn-primary']); !!}
         </div>    

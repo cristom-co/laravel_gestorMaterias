@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\User;
-use Laracasts\Flash\Flash;
+use App\estudiante;
+use App\materia;
 
-class UsersController extends Controller
+
+class materias_estudianteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +18,14 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id','ASC')->paginate(10);
-        return view('admin.users.index')->with('users',$users);
         
+        $user = \Auth::user();
+        $estudiante = $user->estudiante;
+        $materias = $estudiante->materias;
+        // dd($materias);
+        return view('estudiante.materias_estudiante.index')
+            ->with('materias', $materias)
+            ->with('estudiante',$estudiante);
     }
 
     /**
@@ -29,7 +35,12 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $user = \Auth::user();
+        $estudiante = $user->estudiante;
+        
+        $materias = materia::orderBy('id','ASC')->where('carrera_id',$estudiante->carrera_id)->paginate(10);
+        return view('estudiante.materias_estudiante.create')
+        ->with('materias',$materias);
     }
 
     /**
@@ -40,11 +51,11 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User($request->all());
-        $user->password = bcrypt($request->password);
-        $user->save();
-        Flash::info("Se ha registrado a '". $user->name . "' correctamente!");
-        return redirect()->route('admin.users.index');
+        $user = \Auth::user();
+        $estudiante = $user->estudiante;
+        $materia = materia::find($request->materia_id);
+        $estudiante->materias()->save($materia);
+        return redirect()->route('estudiante.materias_estudiante.index');
     }
 
     /**
@@ -66,9 +77,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('admin.users.edit')->with('user', $user);
-
+        //
     }
 
     /**
@@ -80,14 +89,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user =  User::find($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->type = $request->type;
-        $user->save();
-        
-        Flash::warning("El usuario '".$user->name ."' se edito correctamente!");
-        return redirect()->route('admin.users.index');
+        //
     }
 
     /**
@@ -98,10 +100,6 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
-        
-        Flash::warning("Se ha eliminado a '". $user->name ."' correctamente!");
-        return redirect()->route('admin.users.index');
+        //
     }
 }

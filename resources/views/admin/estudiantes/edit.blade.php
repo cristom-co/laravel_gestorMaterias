@@ -23,6 +23,12 @@
             {!! Form::label('telefono', 'Telefono'); !!}
             {!! Form::text('telefono',$estudiante->telefono,['class' => 'form-control', 'placeholder' => 'escriba el telefono del estudiante']); !!}
         </div>
+        
+        <div class="form-group">
+            {!! Form::label('carrera_id','Carreras') !!}
+            {!! Form::select('carrera_id',$carreras,null,['class'=>'form-control', 'placeholder' => 'Seleccione una carrera']); !!}
+        </div>
+        
         <div>
             {!! Form::submit('Editar Estudiante',['class' => 'btn btn-primary']); !!}
         </div>    

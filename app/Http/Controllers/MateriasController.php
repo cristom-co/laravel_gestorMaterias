@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\materia;
 use App\carrera;
 use App\profesor;
+use Laracasts\Flash\Flash;
 
 class MateriasController extends Controller
 {
@@ -44,7 +45,13 @@ class MateriasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $materia =  new materia($request->all());
+        $materia->carrera()->associate($request->carrera_id);
+        $materia->profesor()->associate($request->profesor_id);
+        $materia->save();
+        
+        Flash::info("Se ha registrado la materia '". $materia->nombre . "' correctamente!");
+        return redirect()->route('admin.materias.index');
     }
 
     /**
@@ -66,7 +73,13 @@ class MateriasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $materia = materia::find($id);
+        $carreras = carrera::orderBy('nombre','ASC')->lists('nombre','id');
+        $profesores = profesor::orderBy('nombres','ASC')->lists('nombres','id');
+        return view('admin.materias.edit')
+        ->with('materia',$materia)
+        ->with('carreras',$carreras)
+        ->with('profesores',$profesores);
     }
 
     /**
@@ -78,7 +91,12 @@ class MateriasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $materia = materia::find($id);
+        $materia->carrera()->associate($request->carrera_id);
+        $materia->profesor()->associate($request->profesor_id);
+        $materia->fill($request->all())->save();
+        Flash::warning("La materia se edito correctamente!");
+        return redirect()->route('admin.materias.index');
     }
 
     /**
@@ -89,6 +107,9 @@ class MateriasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $materia = materia::find($id);
+        $materia->delete();
+        Flash::warning("Se ha eliminado la materia '". $materia->nombre . "' correctamente!");
+        return redirect()->route('admin.materias.index');
     }
 }
