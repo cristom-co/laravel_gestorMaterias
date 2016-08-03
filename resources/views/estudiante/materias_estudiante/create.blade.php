@@ -1,7 +1,11 @@
 @extends('home')
 @section('contentheader_title','Asignar una nueva materia')
 @section('forms')
-    
+    <div>
+        <a href="{{ route('estudiante.materias_estudiante.index') }}" class="btn btn-primary" style="margin:10px;">
+            lista de materias universitarias
+        </a>
+    </div>
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>

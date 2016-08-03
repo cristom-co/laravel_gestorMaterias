@@ -59,7 +59,7 @@
 
             </div>
             <div class="col-lg-8">
-                <img class="img-responsive" src="{{ asset('/img/app-bg.png') }}" alt="">
+                <img class="img-responsive" src="{{ asset('/img/incios.png') }}" alt="" width="900px">
             </div>
             <div class="col-lg-2">
         

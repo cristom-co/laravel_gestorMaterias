@@ -59,4 +59,8 @@ Route::group(['prefix' => 'estudiante', 'middleware' => 'auth'], function () {
     });
     
     Route::resource('materias_estudiante','materias_estudianteController');
+    Route::get('materias_estudiante/{id}/destroy',[
+        'uses'  =>  'materias_estudianteController@destroy',
+        'as'    =>  'estudiante.materias_estudiante.destroy']
+    );
 });

@@ -15,6 +15,7 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     
     public function index()
     {
         $users = User::orderBy('id','ASC')->paginate(10);
@@ -100,7 +101,6 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        
         Flash::warning("Se ha eliminado a '". $user->name ."' correctamente!");
         return redirect()->route('admin.users.index');
     }

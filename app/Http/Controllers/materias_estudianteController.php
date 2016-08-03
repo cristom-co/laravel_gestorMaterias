@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\estudiante;
 use App\materia;
+use DB;
 
 
 class materias_estudianteController extends Controller
@@ -22,7 +23,7 @@ class materias_estudianteController extends Controller
         $user = \Auth::user();
         $estudiante = $user->estudiante;
         $materias = $estudiante->materias;
-        // dd($materias);
+        
         return view('estudiante.materias_estudiante.index')
             ->with('materias', $materias)
             ->with('estudiante',$estudiante);
@@ -39,8 +40,7 @@ class materias_estudianteController extends Controller
         $estudiante = $user->estudiante;
         
         $materias = materia::orderBy('id','ASC')->where('carrera_id',$estudiante->carrera_id)->paginate(10);
-        return view('estudiante.materias_estudiante.create')
-        ->with('materias',$materias);
+        return view('estudiante.materias_estudiante.create')->with('materias',$materias);
     }
 
     /**
@@ -100,6 +100,14 @@ class materias_estudianteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = \Auth::user();
+        $estudiante = $user->estudiante;
+        
+        //machetazo aqui :)
+        DB::delete('delete from estudiante_materia 
+        where estudiante_id = "'.$estudiante->id.'" and materia_id = "'.$id.'"');
+        
+        return redirect()->route('estudiante.materias_estudiante.index');
+
     }
 }
