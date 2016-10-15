@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
 
 class User extends Authenticatable
 {
@@ -26,5 +27,9 @@ class User extends Authenticatable
     
     public function estudiante() {
         return $this->hasOne('App\estudiante','user_id','id');
+    }
+    
+    public function scopeListarUsers() {
+        return (array) DB::table('users')->get();
     }
 }

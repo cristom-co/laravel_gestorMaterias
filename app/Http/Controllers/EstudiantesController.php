@@ -19,7 +19,8 @@ class EstudiantesController extends Controller
      */
     public function index()
     {
-        $estudiantes =  estudiante::orderBy('id','ASC')->paginate(5);
+        // $estudiantes =  estudiante::orderBy('id','ASC')->paginate(5);
+        $estudiantes = \App\estudiante::with(['user','carrera'])->first()->paginate(10);
         return view('admin.estudiantes.index')->with('estudiantes', $estudiantes);
     }
 

@@ -17,9 +17,10 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function () {
     
-    Route::get('/',function () {
-        return view('admin/panel-admin');
-    });
+    Route::get('index',[
+        'uses'  =>  'HomeController@index',
+        'as'    =>  'admin.index']
+    );
     
     Route::resource('users','UsersController');
     Route::get('users/{id}/destroy',[
@@ -53,10 +54,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function () {
 });
 
 Route::group(['prefix' => 'estudiante', 'middleware' => 'auth'], function () {
-    
-    Route::get('/', function () {
-        echo 'Panel del estudiante';
-    });
     
     Route::resource('materias_estudiante','materias_estudianteController');
     Route::get('materias_estudiante/{id}/destroy',[

@@ -24,8 +24,8 @@
                         <td>{{ $materia->descripcion }}</td>
                         <td>{{ $materia->cupos }}</td>
                         <td>{{ $materia->jornada }}</td>
-                        <td>{{ $materia->profesor_id }}</td>
-                        <td>{{ $materia->carrera_id }}</td>
+                        <td>{{ $materia->profesor->nombres . " " . $materia->profesor->apellidos }}</td>
+                        <td>{{ $materia->carrera->nombre }}</td>
                         <td class='text-right'>
                             <a href="{{ route('admin.materias.edit',$materia->id) }}" class="btn btn-info"><span class='glyphicon glyphicon-wrench' aria-hidden='true'></span></a>
                             <a href="{{ route('admin.materias.destroy', $materia->id)}}" onclick="return confirm('Por favor confirma la accion de eliminar')" class="btn btn-danger"><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></a>

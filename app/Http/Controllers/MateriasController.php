@@ -19,7 +19,9 @@ class MateriasController extends Controller
      */
     public function index()
     {
-        $materias = materia::orderBy('id','ASC')->paginate(10);
+        // $materias = materia::orderBy('id','ASC')->paginate(10);
+        $materias = \App\materia::with(['profesor','carrera'])->first()->paginate(10);
+        
         return view('admin.materias.index')->with('materias',$materias);
     }
 

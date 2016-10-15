@@ -18,6 +18,7 @@ class CreateMateriasTable extends Migration
             $table->string('descripcion');
             $table->integer('cupos');
             $table->string('jornada');
+            $table->string('semestre');
             $table->integer('profesor_id')->unsigned();
             $table->foreign('profesor_id')->references('id')->on('profesores');
             $table->integer('carrera_id')->unsigned();

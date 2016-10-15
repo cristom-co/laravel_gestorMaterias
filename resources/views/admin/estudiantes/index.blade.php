@@ -26,8 +26,8 @@
                         <td>{{ $estudiante->identificacion }}</td>
                         <td>{{ $estudiante->direccion }}</td>
                         <td>{{ $estudiante->telefono }}</td>
-                        <td>{{ $estudiante->user_id }}</td>
-                        <td>{{ $estudiante->carrera_id }}</td>
+                        <td>{{ $estudiante->user->name }}</td>
+                        <td>{{ $estudiante->carrera->nombre }}</td>
                         <td class='text-right'>
                             <a href="{{ route('admin.estudiantes.edit', $estudiante->id)}}" class="btn btn-info"><span class='glyphicon glyphicon-wrench' aria-hidden='true'></span></a>
                             <a href="{{ route('admin.estudiantes.destroy',$estudiante->id)}}" onclick="return confirm('Por favor confirma la accion de eliminar')" class="btn btn-danger"><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></a>

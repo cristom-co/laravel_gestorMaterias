@@ -14,9 +14,9 @@ class CreateEstudianteCarreraTable extends Migration
     {
         Schema::create('estudiante_materia', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('estudiante_id')->unsigned();
+            $table->integer('estudiante_id')->unsigned()->unique();
             $table->foreign('estudiante_id')->references('id')->on('estudiantes');
-            $table->integer('materia_id')->unsigned();
+            $table->integer('materia_id')->unsigned()->unique();
             $table->foreign('materia_id')->references('id')->on('materias');
             $table->timestamps();
         });

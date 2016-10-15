@@ -1,6 +1,5 @@
-@extends('admin.panel-admin')
+@extends('home')
 @section('contentheader_title','Profesores del sistema')
-
 @section('forms')
     
     <a href="{{route('admin.profesores.create')}}" class="btn btn-success" style='margin:10px;'>Registrar un nuevo profesor</a>

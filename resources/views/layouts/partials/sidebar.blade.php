@@ -21,20 +21,18 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">Administrador / estudiante</li>
-            <!-- Optionally, you can add icons to the links -->
             
             @if (Auth::user()->type == "admin")
-            <li class="active"><a href="{{ url('admin') }}"><i class='fa fa-link'></i> <span>Inicio</span></a></li>
-            <li><a href="{{ url('admin/users') }}"><i class='fa fa-link'></i> <span>Usuarios</span></a></li>
-            <li><a href="{{ url('admin/profesores') }}"><i class='fa fa-link'></i> <span>Profesores</span></a></li>
-            <li><a href="{{ url('admin/carreras') }}"><i class='fa fa-link'></i> <span>Carreras</span></a></li>
-            <li><a href="{{ url('admin/materias') }}"><i class='fa fa-link'></i> <span>Materias</span></a></li>
-            <li><a href="{{ url('admin/estudiantes') }}"><i class='fa fa-link'></i> <span>Estudiantes</span></span></a></li>
-            
+                <li class="header">Administrador</li>
+                <li class="active"><a href="{{ route('admin.index') }}"><i class='fa fa-link'></i> <span>Inicio</span></a></li>
+                <li><a href="{{ url('admin/users') }}"><i class='fa fa-link'></i> <span>Usuarios</span></a></li>
+                <li><a href="{{ url('admin/profesores') }}"><i class='fa fa-link'></i> <span>Profesores</span></a></li>
+                <li><a href="{{ url('admin/carreras') }}"><i class='fa fa-link'></i> <span>Carreras</span></a></li>
+                <li><a href="{{ url('admin/materias') }}"><i class='fa fa-link'></i> <span>Materias</span></a></li>
+                <li><a href="{{ url('admin/estudiantes') }}"><i class='fa fa-link'></i> <span>Estudiantes</span></span></a></li>
             @else 
-                <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>Inicio</span></a></li>
-                <li><a href="{{ url('estudiante/materias_estudiante') }}"><i class='fa fa-link'></i> <span>Programacion Materias</span></a></li>
+                <li class="header">Estudiante</li>
+                <li class="active"><a href="{{ url('estudiante/materias_estudiante') }}"><i class='fa fa-link'></i> <span>Programacion Materias</span></a></li>
             @endif
             
 
